@@ -3,8 +3,6 @@ import numpy as np
 
 def call_option(S, K, T, r, sigma, N = 100, american=False):
     """
-    Binomial tree pricer for a call option.
-    
     Parameters:
     S : initial stock price
     K : strike price
@@ -31,31 +29,30 @@ def call_option(S, K, T, r, sigma, N = 100, american=False):
     for i in range(N-1, -1, -1):
         Stock_prices = S * (u ** np.arange(i, -1, -1)) * (d ** np.arange(0, i + 1, 1)) #Stock prices at time i
         option_values = np.exp(-r * dt) * (q * option_values[:-1] + (1 - q) * option_values[1:])
-        
+
         if american:
-            option_values = np.maximum(option_values, Stock_prices - K)  # early exercise check
+            option_values = np.maximum(option_values, Stock_prices - K)  # early exercise
 
     return option_values[0]
 
 
 def put_option(S, K, T, r, sigma, N=100, american=False):
     """
-    Binomial tree pricer for a put option.
-    
-    Same parameters as call_option.
+    Same parameters as call_options
     """
     dt = T / N
     u = np.exp(sigma * np.sqrt(dt))
     d = 1 / u
     q = (np.exp(r * dt) - d) / (u - d)
 
-    ST = S * (u ** np.arange(N, -1, -1)) * (d ** np.arange(0, N + 1, 1))
-    option_values = np.maximum(K - ST, 0)
+    Stock_prices = S * (u ** np.arange(N, -1, -1)) * (d ** np.arange(0, N + 1, 1))
+    option_values = np.maximum(K - Stock_prices, 0)
 
     for i in range(N-1, -1, -1):
-        ST = S * (u ** np.arange(i, -1, -1)) * (d ** np.arange(0, i + 1, 1))
+        Stock_prices = S * (u ** np.arange(i, -1, -1)) * (d ** np.arange(0, i + 1, 1))
         option_values = np.exp(-r * dt) * (q * option_values[:-1] + (1 - q) * option_values[1:])
+
         if american:
-            option_values = np.maximum(option_values, K - ST)  # early exercise
+            option_values = np.maximum(option_values, K - Stock_prices)  # early exercise
 
     return option_values[0]
