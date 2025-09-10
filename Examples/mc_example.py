@@ -1,7 +1,7 @@
 from monte_carlo.MCsolo import monte_carlo_stock_paths
 
 def main():
-    S, mu, T, sigma = 100, 0.05, 1, 0.05, 0.2
+    S, mu, T, sigma = 100, 0.05, 1, 0.2
     steps, num_paths = 252, 10000
     plot_paths = 20
 
