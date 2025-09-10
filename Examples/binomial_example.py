@@ -1,18 +1,13 @@
-from Black_Scholes import black_scholes_call, black_scholes_put
+from Binomial_Trees import call_option, put_option
 
 def main():
-    # Example parameters
-    S = 100     # current stock price
-    K = 100     # strike price
-    T = 1       # 1 year until maturity
-    r = 0.05    # 5% risk-free rate
-    sigma = 0.2 # 20% volatility
+    S, K, T, r, sigma = 100, 100, 1, 0.05, 0.2
     
-    call_price = black_scholes_call(S, K, T, r, sigma)
-    put_price = black_scholes_put(S, K, T, r, sigma)
+    call = call_option(S, K, T, r, sigma, N=200, american=False)
+    put = put_option(S, K, T, r, sigma, N=200, american=True)
 
-    print("Black-Scholes Call Price: {call_price}")
-    print("Black-Scholes Put Price: {put_price}")
+    print(f"European Call (Binomial, N=200): {call}")
+    print(f"American Put (Binomial, N=200): {put}")
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
