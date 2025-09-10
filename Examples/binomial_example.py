@@ -1,4 +1,4 @@
-from Binomial_Trees import call_option, put_option
+from Binomial_Trees.Binomial_pricing import call_option, put_option
 
 def main():
     S, K, T, r, sigma = 100, 100, 1, 0.05, 0.2

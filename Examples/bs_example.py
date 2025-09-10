@@ -1,4 +1,4 @@
-from Black_Scholes import black_scholes_call, black_scholes_put
+from Black_Scholes.BS_pricing import black_scholes_call, black_scholes_put
 
 def main():
     # Example parameters
