@@ -7,11 +7,11 @@ def main():
     corr_matrix = [[1.0, 0.7], 
                    [0.7, 1.0]]  # correlation matrix
     
-    T, steps, num_paths = 1, 252, 5000
+    T, steps, num_paths = 1, 250, 5000
 
     means_correlated = monte_carlo_correlated_stocks(
         S, mu, sigma, corr_matrix, 
-        T, steps, num_paths, plot_paths=5, seed=42)
+        T, steps, num_paths, plot_paths=20)
 
     print(f"Monte Carlo Simulated Mean: {means_correlated}")
 

@@ -1,5 +1,4 @@
 import numpy as np
-import numpy as np
 
 def call_option(S, K, T, r, sigma, N = 100, american=False):
     """

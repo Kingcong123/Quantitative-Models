@@ -18,17 +18,17 @@ def monte_carlo_correlated_stocks(S, mu, sigma, corr_matrix, T, steps, num_paths
     """
     
     paths = monte_carlo_correlated_sim(S, mu, sigma, corr_matrix, T, steps, num_paths = 10000)
-    
+    print("done sim")
     plot_stock_paths(paths, len(S), T, steps, num_paths, plot_paths)
-    
+    print("done plot")
     means = []
     for i in range(len(S)):
-       means.append(np.mean[: , steps + 1, i])
+       means.append(np.mean(paths[: , steps, i]))
     
     return means
 
 
-def monte_carlo_correlated_sim(S, mu, sigma, corr_matrix, T, steps, num_paths = 10000,):
+def monte_carlo_correlated_sim(S, mu, sigma, corr_matrix, T, steps, num_paths = 10000):
     """
     Simulate stock price paths using Geometric Brownian Motion (GBM).
     """
@@ -43,16 +43,14 @@ def monte_carlo_correlated_sim(S, mu, sigma, corr_matrix, T, steps, num_paths = 
     
     for t in range(1, steps + 1):
         # Generate correlated random normals
-        z = np.random.normal((num_paths, num_stocks))
+        z = np.random.normal(loc=0.0, scale=1.0, size=(num_paths, num_stocks))  
         correlated_z = z @ L.T
-
         #GBM
         drift = (mu - 0.5 * sigma**2) * dt
         stochastic = sigma * np.sqrt(dt) * correlated_z
         paths[:, t, :] = paths[:, t-1, :] * np.exp(drift + stochastic)
 
     return paths
-
 
 
 def plot_stock_paths(paths, num_stocks, T, steps, num_paths, plot_paths):
