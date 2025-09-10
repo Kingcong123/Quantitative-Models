@@ -16,6 +16,7 @@ def monte_carlo_correlated_stocks(S, mu, sigma, corr_matrix, T, steps, num_paths
     Returns:
     Array of predicted mean stock prices of the input stocks
     """
+    
     paths = monte_carlo_correlated_sim(S, mu, sigma, corr_matrix, T, steps, num_paths = 10000)
     
     plot_stock_paths(paths, len(S), T, steps, num_paths, plot_paths)
