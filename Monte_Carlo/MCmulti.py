@@ -16,7 +16,7 @@ def monte_carlo_correlated_stocks(S, mu, sigma, corr_matrix, T, steps, num_paths
     Returns:
     Array of predicted mean stock prices of the input stocks
     """
-    np.random.seed(None) 
+    
     paths = monte_carlo_correlated_sim(S, mu, sigma, corr_matrix, T, steps, num_paths = 10000)
     plot_stock_paths(paths, len(S), T, steps, num_paths, plot_paths)
     means = []
@@ -26,10 +26,10 @@ def monte_carlo_correlated_stocks(S, mu, sigma, corr_matrix, T, steps, num_paths
     return means
 
 
-def monte_carlo_correlated_sim(S, mu, sigma, corr_matrix, T, steps, num_paths = 10000):
+def monte_carlo_correlated_sim(S, mu, sigma, corr_matrix, T, steps, num_paths = 10000, seed = None):
     """
     Simulate stock price paths using Geometric Brownian Motion (GBM).
-    """
+    """ 
     dt = T / steps 
     S, mu, sigma = np.array(S), np.array(mu), np.array(sigma)
     num_stocks = len(S)

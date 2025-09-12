@@ -13,12 +13,11 @@ def monte_carlo_stock_paths(S, mu, sigma, T, steps, num_paths = 10000, plot_path
     - num_paths: number of simulated paths
     - plot_paths: number of paths to plot
     """
-    np.random.seed(None) 
     paths = monte_carlo_simulation(S, mu, sigma, T, steps, num_paths)
     plot_stock_paths(T, steps, paths, plot_paths)
     return np.mean(paths[:, steps])
 
-def monte_carlo_simulation(S, mu, sigma, T, steps, num_paths):
+def monte_carlo_simulation(S, mu, sigma, T, steps, num_paths, seed = None):
     """
     Same parameters as monte_carlo_stock_paths
     """
