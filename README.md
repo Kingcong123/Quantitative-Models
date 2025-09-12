@@ -14,3 +14,5 @@ The project is organized into three main modules:
 - Monte Carlo simulation of stock paths using Geometric Brownian Motion (GBM)  
 - Correlated stock simulations with Cholesky decomposition  
 - Plotting utilities for simulated paths  
+-Portfolio risk metrics: Value-at-Risk (VaR) and Conditional VaR (CVaR)
+-Stress testing with shocks to volatility and correlations
